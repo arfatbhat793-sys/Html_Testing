@@ -1,0 +1,19 @@
+h1{
+    color:rgb(138, 43, 226);
+    background-color: black;
+}
+h2{
+    color:hsl(165, 69%, 48%);
+    background-color: beige;
+}
+p{
+    color: rgb(8, 0, 255);
+    background-color: chartreuse;
+}
+button{
+    color: #00ff00;
+    background-color:white;
+}
+body{
+    background-color: #5D2E46; ;
+}

@@ -1,0 +1,21 @@
+.div2 {
+    color: rgb(100,100,100);
+
+}
+
+.div3 {
+    color: rgb(120,100,255);
+}
+#br{
+    color:rgb(120,100,255);
+}
+#hey{
+    color:rgb(255,0,0);
+}
+
+p{
+    color:rgb(0,0,255);
+}
+.div4{
+    color: hsl(0, 59%, 70%);
+}

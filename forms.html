@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>login form</title>
+</head>
+<body>
+    <form action="forms.html" method="post">
+        <hr>
+        <label for="name">Name:</label>
+        <input type="text" id="name" name="name" placeholder="Enter your name"id=name required/>
+        <br>
+        <label for="email">Email:</label>
+        <input type="email" id="email" name="email" placeholder="Enter your email" required/>
+        <br>
+        <label for="password">Password:</label>
+        <input type="password" id="password" name="password" placeholder="Enter your password" required/>
+        <br>
+        <label for="birthdate">Birthdate:</label>
+        <input type="date" id="birthdate" name="birthdate" placeholder="Enter your birthdate" required/>
+        <br>
+        <label for="gender">Gender:</label>
+        <input type="radio" id="male" name="gender" value="male">
+        <label for="male">Male</label>
+        
+        <input type="radio" id="female" name="gender" value="female">
+
+        <label for="female">Female</label>
+
+        <input type="submit" value="Submit"><br><hr>
+        <input type="range" min="0" max="100" value="50">
+    </form>
+</body>
+</html>
