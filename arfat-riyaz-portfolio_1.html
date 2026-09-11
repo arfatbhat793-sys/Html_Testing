@@ -1,0 +1,348 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Arfat Riyaz — Data & AI</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,300;9..144,500;9..144,600;9..144,700&family=Inter:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --ink: #171B1F;
+    --ink-soft: #4B5560;
+    --paper: #F2EEE3;
+    --paper-dim: #E8E2D2;
+    --saffron: #C97A2E;
+    --chinar: #8C3B2E;
+    --sage: #56674B;
+    --line: rgba(23,27,31,0.14);
+    --line-soft: rgba(23,27,31,0.07);
+  }
+  *{box-sizing:border-box; margin:0; padding:0;}
+  html{scroll-behavior:smooth;}
+  body{
+    background:var(--paper);
+    color:var(--ink);
+    font-family:'Inter',sans-serif;
+    line-height:1.6;
+    background-image:
+      linear-gradient(var(--line-soft) 1px, transparent 1px),
+      linear-gradient(90deg, var(--line-soft) 1px, transparent 1px);
+    background-size: 44px 44px;
+  }
+  a{color:inherit;}
+  .eyebrow{
+    font-family:'IBM Plex Mono',monospace;
+    font-size:0.72rem;
+    letter-spacing:0.12em;
+    text-transform:uppercase;
+    color:var(--saffron);
+  }
+  h1,h2,h3{font-family:'Fraunces',serif; font-weight:600; letter-spacing:-0.01em;}
+
+  /* NAV */
+  nav{
+    position:sticky; top:0; z-index:50;
+    display:flex; justify-content:space-between; align-items:center;
+    padding:20px 6vw;
+    background:rgba(242,238,227,0.86);
+    backdrop-filter:blur(6px);
+    border-bottom:1px solid var(--line);
+  }
+  .nav-name{font-family:'Fraunces',serif; font-weight:600; font-size:1.05rem;}
+  .nav-links{display:flex; gap:28px; font-family:'IBM Plex Mono',monospace; font-size:0.75rem;}
+  .nav-links a{
+    text-decoration:none; color:var(--ink-soft);
+    position:relative; padding-bottom:2px;
+  }
+  .nav-links a:hover{color:var(--ink);}
+  .nav-links span{color:var(--saffron);}
+  .nav-links a:focus-visible, a:focus-visible{outline:2px solid var(--saffron); outline-offset:3px;}
+
+  /* HERO */
+  .hero{
+    min-height:86vh;
+    display:flex; flex-direction:column; justify-content:center;
+    padding:0 6vw;
+    position:relative;
+    overflow:hidden;
+  }
+  .hero-inner{max-width:780px; position:relative; z-index:2;}
+  .hero h1{
+    font-size:clamp(3rem, 8vw, 5.6rem);
+    line-height:0.98;
+    margin:14px 0 20px;
+  }
+  .hero p{
+    font-size:1.15rem;
+    color:var(--ink-soft);
+    max-width:540px;
+  }
+  .hero-tags{
+    display:flex; gap:10px; flex-wrap:wrap; margin-top:28px;
+  }
+  .tag{
+    font-family:'IBM Plex Mono',monospace;
+    font-size:0.72rem;
+    padding:6px 12px;
+    border:1px solid var(--line);
+    border-radius:100px;
+    color:var(--ink-soft);
+  }
+  .curve-wrap{
+    position:absolute; right:-4%; top:50%; transform:translateY(-50%);
+    width:min(46vw, 560px);
+    opacity:0.9;
+  }
+  .curve-path{
+    stroke:var(--saffron);
+    stroke-width:2.5;
+    fill:none;
+    stroke-dasharray:900;
+    stroke-dashoffset:900;
+    animation:draw 2.6s ease forwards 0.4s;
+  }
+  .curve-dot{
+    fill:var(--chinar);
+    opacity:0;
+    animation:pop 0.4s ease forwards 2.7s;
+  }
+  @keyframes draw{ to{ stroke-dashoffset:0; } }
+  @keyframes pop{ to{ opacity:1; } }
+  @media (prefers-reduced-motion: reduce){
+    .curve-path{animation:none; stroke-dashoffset:0;}
+    .curve-dot{animation:none; opacity:1;}
+  }
+  @media (max-width: 860px){ .curve-wrap{display:none;} }
+
+  /* SECTION shell */
+  section{
+    padding:90px 6vw;
+    border-top:1px solid var(--line);
+    position:relative;
+  }
+  .section-head{
+    display:flex; align-items:baseline; gap:14px; margin-bottom:44px;
+  }
+  .section-head .idx{
+    font-family:'IBM Plex Mono',monospace;
+    font-size:0.75rem; color:var(--ink-soft);
+  }
+  .section-head h2{font-size:clamp(1.6rem,3vw,2.2rem);}
+  .content-max{max-width:900px;}
+
+  /* ABOUT */
+  #about p{font-size:1.05rem; color:var(--ink-soft); max-width:640px;}
+  #about p + p{margin-top:16px;}
+  .about-grid{display:grid; grid-template-columns:1.4fr 1fr; gap:60px;}
+  .loc-card{
+    font-family:'IBM Plex Mono',monospace;
+    font-size:0.8rem;
+    border:1px solid var(--line);
+    padding:20px;
+    background:var(--paper-dim);
+  }
+  .loc-card div{padding:4px 0;}
+  .loc-card .k{color:var(--ink-soft);}
+  @media (max-width: 720px){ .about-grid{grid-template-columns:1fr;} }
+
+  /* SKILLS as legend/plot */
+  .skills-plot{
+    border:1px solid var(--line);
+    background:var(--paper-dim);
+    padding:32px clamp(16px,4vw,40px);
+  }
+  .axis-label{
+    font-family:'IBM Plex Mono',monospace;
+    font-size:0.68rem;
+    color:var(--ink-soft);
+    text-transform:uppercase;
+    letter-spacing:0.08em;
+    margin-bottom:18px;
+  }
+  .legend{
+    display:flex; flex-wrap:wrap; gap:14px 28px;
+  }
+  .legend-item{
+    display:flex; align-items:center; gap:10px;
+    font-family:'IBM Plex Mono',monospace;
+    font-size:0.88rem;
+  }
+  .swatch{
+    width:12px; height:12px; border-radius:2px; flex-shrink:0;
+  }
+  .toolgroup{margin-top:30px;}
+  .toolgroup + .toolgroup{margin-top:26px;}
+  .toolgroup h3{
+    font-family:'Inter',sans-serif; font-weight:600; font-size:0.95rem;
+    margin-bottom:12px; color:var(--ink);
+  }
+
+  /* EDUCATION timeline */
+  .timeline{border-left:2px solid var(--line); padding-left:32px;}
+  .tl-item{position:relative; padding-bottom:34px;}
+  .tl-item:last-child{padding-bottom:0;}
+  .tl-item::before{
+    content:''; position:absolute; left:-38px; top:6px;
+    width:11px; height:11px; border-radius:50%;
+    background:var(--saffron); border:2px solid var(--paper);
+    box-shadow:0 0 0 2px var(--saffron);
+  }
+  .tl-item .when{
+    font-family:'IBM Plex Mono',monospace; font-size:0.72rem; color:var(--saffron);
+    margin-bottom:4px; display:block;
+  }
+  .tl-item h3{font-size:1.15rem; margin-bottom:4px;}
+  .tl-item p{color:var(--ink-soft); font-size:0.95rem; max-width:560px;}
+
+  /* LANGUAGES */
+  .lang-row{display:flex; gap:40px; flex-wrap:wrap;}
+  .lang-card{min-width:220px;}
+  .lang-card .name{font-family:'Fraunces',serif; font-size:1.3rem; margin-bottom:8px;}
+  .bar-track{height:6px; background:var(--line); border-radius:4px; overflow:hidden;}
+  .bar-fill{height:100%; background:var(--sage); border-radius:4px;}
+  .lang-card .label{
+    margin-top:8px; font-family:'IBM Plex Mono',monospace; font-size:0.72rem; color:var(--ink-soft);
+  }
+
+  /* CONTACT */
+  #contact{border-bottom:none;}
+  .contact-inner{
+    display:flex; justify-content:space-between; align-items:flex-end; flex-wrap:wrap; gap:30px;
+  }
+  #contact h2{font-size:clamp(2rem,5vw,3.2rem); max-width:560px;}
+  .contact-links{display:flex; flex-direction:column; gap:10px; font-family:'IBM Plex Mono',monospace; font-size:0.9rem;}
+  .contact-links a{text-decoration:none; border-bottom:1px solid var(--line); padding-bottom:2px;}
+  .contact-links a:hover{border-color:var(--ink);}
+  footer{
+    padding:26px 6vw; border-top:1px solid var(--line);
+    font-family:'IBM Plex Mono',monospace; font-size:0.72rem; color:var(--ink-soft);
+    display:flex; justify-content:space-between; flex-wrap:wrap; gap:8px;
+  }
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="nav-name">Arfat Riyaz</div>
+  <div class="nav-links">
+    <a href="#about"><span>01</span> About</a>
+    <a href="#skills"><span>02</span> Skills</a>
+    <a href="#education"><span>03</span> Education</a>
+    <a href="#languages"><span>04</span> Languages</a>
+    <a href="#contact"><span>05</span> Contact</a>
+  </div>
+</nav>
+
+<section class="hero">
+  <div class="hero-inner">
+    <div class="eyebrow">Data & AI — Pulwama, Jammu & Kashmir</div>
+    <h1>Arfat<br>Riyaz</h1>
+    <p>Building a foundation in data analysis and applied AI — currently training in the GIT AI course, working hands-on with Python, Pandas, NumPy, Seaborn, and Matplotlib.</p>
+    <div class="hero-tags">
+      <span class="tag">Python</span>
+      <span class="tag">Pandas</span>
+      <span class="tag">NumPy</span>
+      <span class="tag">Seaborn</span>
+      <span class="tag">Matplotlib</span>
+    </div>
+  </div>
+  <div class="curve-wrap">
+    <svg viewBox="0 0 500 300" width="100%" fill="none">
+      <path class="curve-path" d="M20 250 C 120 250, 140 90, 240 110 S 380 40, 480 40" />
+      <circle class="curve-dot" cx="480" cy="40" r="6" />
+    </svg>
+  </div>
+</section>
+
+<section id="about">
+  <div class="section-head"><span class="idx">01</span><h2>About</h2></div>
+  <div class="about-grid">
+    <div>
+      <p>I'm early in my data and AI journey, learning by working directly with real datasets — cleaning them, exploring them, and visualizing what they have to say. The GIT AI course is where that practice is being sharpened right now.</p>
+      <p>Alongside the technical tools, I bring solid documentation and reporting fundamentals through MS Word and Excel, so analysis doesn't just stay in a notebook — it turns into something clear and shareable.</p>
+    </div>
+    <div class="loc-card">
+      <div><span class="k">based in</span><br>Pulwama, J&K</div>
+      <div><span class="k">currently</span><br>GIT AI course</div>
+      <div><span class="k">focus</span><br>Data analysis & AI</div>
+    </div>
+  </div>
+</section>
+
+<section id="skills">
+  <div class="section-head"><span class="idx">02</span><h2>Skills</h2></div>
+  <div class="content-max skills-plot">
+    <div class="axis-label">toolkit — by category</div>
+    <div class="toolgroup">
+      <h3>Data analysis</h3>
+      <div class="legend">
+        <div class="legend-item"><span class="swatch" style="background:var(--saffron)"></span>Python</div>
+        <div class="legend-item"><span class="swatch" style="background:var(--saffron)"></span>Pandas</div>
+        <div class="legend-item"><span class="swatch" style="background:var(--saffron)"></span>NumPy</div>
+      </div>
+    </div>
+    <div class="toolgroup">
+      <h3>Visualization</h3>
+      <div class="legend">
+        <div class="legend-item"><span class="swatch" style="background:var(--chinar)"></span>Seaborn</div>
+        <div class="legend-item"><span class="swatch" style="background:var(--chinar)"></span>Matplotlib</div>
+      </div>
+    </div>
+    <div class="toolgroup">
+      <h3>Documentation & reporting</h3>
+      <div class="legend">
+        <div class="legend-item"><span class="swatch" style="background:var(--sage)"></span>MS Word</div>
+        <div class="legend-item"><span class="swatch" style="background:var(--sage)"></span>MS Excel</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="education">
+  <div class="section-head"><span class="idx">03</span><h2>Education</h2></div>
+  <div class="content-max timeline">
+    <div class="tl-item">
+      <span class="when">In progress</span>
+      <h3>GIT AI Course</h3>
+      <p>Structured training program focused on practical AI and data skills — currently underway.</p>
+    </div>
+  </div>
+</section>
+
+<section id="languages">
+  <div class="section-head"><span class="idx">04</span><h2>Languages</h2></div>
+  <div class="content-max lang-row">
+    <div class="lang-card">
+      <div class="name">English</div>
+      <div class="bar-track"><div class="bar-fill" style="width:85%"></div></div>
+      <div class="label">Professional working proficiency</div>
+    </div>
+    <div class="lang-card">
+      <div class="name">Urdu</div>
+      <div class="bar-track"><div class="bar-fill" style="width:100%"></div></div>
+      <div class="label">Full professional proficiency</div>
+    </div>
+  </div>
+</section>
+
+<section id="contact">
+  <div class="section-head"><span class="idx">05</span><h2>Contact</h2></div>
+  <div class="content-max contact-inner">
+    <h2>Let's talk about data, AI, or a role where they matter.</h2>
+    <div class="contact-links">
+      <a href="mailto:youremail@example.com">youremail@example.com</a>
+      <a href="#">linkedin.com/in/your-profile</a>
+      <a href="#">github.com/your-username</a>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <span>Arfat Riyaz — Pulwama, J&K</span>
+  <span>Built with Python, Pandas, and a work in progress.</span>
+</footer>
+
+</body>
+</html>
